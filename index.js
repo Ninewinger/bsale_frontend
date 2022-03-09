@@ -47,22 +47,25 @@ window.onload = function () {
         }
     }
 
-    //obtiene los productos de la API y los muestra con productCard con async/await
-    function getProducts(url) {        
+    //obtiene los productos de la API y los muestra con productCard con try catch
+    function getProducts(url) {
         fetch(url)
-            .then(response => response.json())
-            .then(data => {
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (data) {
                 products.innerHTML = "";
-                data.forEach(element => {
-                    products.appendChild(productCard(element));
+                data.forEach(function (product) {
+                    products.appendChild(productCard(product));
                 });
             })
-            .catch(error => console.log(error));
-
-        
+            .catch(function (error) {
+                console.log(error);
+                if (error.status == 404) {
+                    products.innerHTML = "<h1>No hay productos</h1>";
+                }
+            });
     }
-
-
 
     //ordena los productos que se muestran en pantalla segun categorias
     orderby.addEventListener('change', function () {
