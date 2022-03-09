@@ -9,7 +9,7 @@ window.onload = function () {
 
     let category = "";
     let search = "";
-    let urlF = "";
+    let urlF = urlProducts;
 
     //crea las cartas donde se mustran los productos
     function productCard(product) {
@@ -55,15 +55,19 @@ window.onload = function () {
             })
             .then(function (data) {
                 products.innerHTML = "";
-                data.forEach(function (product) {
-                    products.appendChild(productCard(product));
+                data.forEach(product => {
+                    try {
+                        products.appendChild(productCard(product));
+                    } catch (error) {
+                        console.log(error);
+                        //if fails, try again
+                        getProducts(url);
+                    }
                 });
             })
             .catch(function (error) {
                 console.log(error);
-                if (error.status == 404) {
-                    products.innerHTML = "<h1>No hay productos</h1>";
-                }
+                getProducts(url);
             });
     }
 
@@ -83,6 +87,7 @@ window.onload = function () {
         getProducts(urlF);
         search = "";
     });
+    
 
     getProducts(urlF);
 }
