@@ -40,11 +40,11 @@ window.onload = function () {
             if (search == "") {
                 return urlProducts;
             } else {
-                search = "";
+                category = "";
                 return urlSearch + search;
             }
         } else {
-            category = "";
+            search = "";
             return urlCategory + "/" + category;
         }
     }
