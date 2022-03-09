@@ -41,11 +41,9 @@ window.onload = function () {
                 return urlProducts;
             } else {
                 search = "";
-                category = "";
                 return urlSearch + search;
             }
         } else {
-            search = "";
             category = "";
             return urlCategory + "/" + category;
         }
