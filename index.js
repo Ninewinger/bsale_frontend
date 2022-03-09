@@ -48,8 +48,8 @@ window.onload = function () {
     }
 
     //obtiene los productos de la API y los muestra con productCard con async/await
-    async function getProducts(url) {        
-        /* fetch(url)
+    function getProducts(url) {        
+        fetch(url)
             .then(response => response.json())
             .then(data => {
                 products.innerHTML = "";
@@ -57,13 +57,8 @@ window.onload = function () {
                     products.appendChild(productCard(element));
                 });
             })
-            .catch(error => console.log(error)); */
-        const response = await fetch(url);
-        const data = await response.json();
-        products.innerHTML = "";
-        data.forEach(element => {
-            products.appendChild(productCard(element));
-        });
+            .catch(error => console.log(error));
+
         
     }
 
