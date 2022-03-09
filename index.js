@@ -40,11 +40,9 @@ window.onload = function () {
             if (search == "") {
                 return urlProducts;
             } else {
-                category = "";
                 return urlSearch + search;
             }
-        } else {
-            search = "";
+        } else {            
             return urlCategory + "/" + category;
         }
     }
@@ -77,6 +75,7 @@ window.onload = function () {
         urlF = url(category, search);
         console.log(category, urlF);
         getProducts(urlF);
+        category = "";
     });
     
     botoBuscar.addEventListener('click', function () {
@@ -84,6 +83,7 @@ window.onload = function () {
         urlF = url(category, search);
         console.log(search, urlF);
         getProducts(urlF);
+        search = "";
     });
 
     getProducts(urlF);
